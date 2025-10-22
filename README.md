@@ -1,2 +1,2 @@
 # myCalculator
-Calolatrice sdrumosa.
+Calcolatrice sdrumosa.
