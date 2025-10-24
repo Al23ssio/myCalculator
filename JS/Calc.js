@@ -15,6 +15,7 @@ allBtn.forEach((btn) => {
 
 function somma(a, b) {
     return a + b;
+
 }
 
 function sottrazione(a, b) {

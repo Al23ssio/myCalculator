@@ -1,0 +1,32 @@
+/* #val1 {
+    width: 100px;
+    height: 30px;
+    font-size: x-large;
+}
+
+#val2 {
+    width: 100px;
+    height: 30px;
+    font-size: x-large;
+} */
+
+.val {
+    width: 100px;
+    height: 30px;
+    font-size: x-large;
+    margin: 35px;
+}
+
+.op {
+    margin-left: 15px;
+    margin-right: 30px;
+    font-size: 20px;
+    width: 50px;
+    height: 40px;
+    color: white;
+    background-color: gray;
+}
+
+h2 {
+    color: green;
+}
