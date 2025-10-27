@@ -5,30 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myCalculator</title>
     
-    <script src="JS/Calc.js"></script>
     <link rel="stylesheet" href="CSS/style.css">
 
 </head>
 
 <body>
 
-    <input type="number" class="val" name="val1" id="val1">    
-    <input type="number" class="val" name="val2" id="val2">
+    <input type="number" name="val1" id="val1">    
+    <input type="number" name="val2" id="val2">
 
     <!-- button.op#$*4 -->
     <br>
+    <br>    
+
+    <button class="op" id="1" operation="+">+</button>
+    <button class="op" id="2" operation="-">-</button>
+    <button class="op" id="3" operation="*">x</button>
+    <button class="op" id="4" operation="/">/</button>
+    <button class="op" id="5" operation="CLR">CLR</button>
+
+
+    <br>
     <br>
 
-    <button class="op" id="1">+</button>
-    <button class="op" id="2">-</button>
-    <button class="op" id="3">x</button>
-    <button class="op" id="4">÷</button>
-
-    <br>
-    <br>
-
-    <h2>RISULATO: </h2>
+    <h2>RISULATO: </h2> 
     <p id="result"></p>
+
+    <ol id="memory"></ol>
+
+    <script src="JS/Calc.js"></script>
 
 </body>
 </html>
