@@ -1,76 +1,64 @@
-//let result = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  const val1 = document.getElementById('val1');
+  const val2 = document.getElementById('val2');
+  const resultEl = document.getElementById('result');
+  const memoryEl = document.getElementById('memory');
+  const buttons = document.querySelectorAll('.op');
+  const clrBtn = document.getElementById('clr');
 
-//Array<ButtonHTMLElement>
-let allBtn = document.querySelectorAll("button");
+  function formatNumber(n){
+    // Rimuove trailing zeros inutili in caso di numeri decimali
+    return Number.isFinite(n) ? +parseFloat(n.toFixed(10)) : n;
+  }
 
-let val1 = document.getElementById("val1");
-let val2 = document.getElementById("val2");
-let result = document.getElementById("result");
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const op = btn.dataset.operation;
+      if (op === 'CLR') return; // gestito separatamente
 
-allBtn.forEach((btn) => {
-    console.log(btn);
-    
-    //btn.innerText = "ciao";
+      const a = parseFloat(val1.value);
+      const b = parseFloat(val2.value);
 
-    btn.addEventListener("click", (event) => {
-        console.log(event.target.attributes);
-        
-        var operation = event.target.attributes["operation"].value;
-        console.log("OP: ", operation);
-        
+      if (Number.isNaN(a) || Number.isNaN(b)) {
+        resultEl.textContent = 'Inserisci entrambi i numeri';
+        resultEl.style.color = '#f59e0b'; // ambra per warning
+        return;
+      }
 
-        let a = parseFloat(val1.value);
-        //console.log(typeof a);
-        let b = parseFloat(val2.value);
-
-        let res = performOperation(a, b, operation);
-
-        let memory = document.getElementById("memory");
-        
-        result.innerText = res;
-    })
-})
-
-function performOperation(a, b, operation) {
-    switch(operation) {
-        case "+":
-            return somma(a, b);
-        case "-":
-            return sottrazione(a, b);
-        case "*":
-            return moltiplicazione(a, b);
-        case "/":
-            return divisione(a, b);
+      let res;
+      switch(op){
+        case '+': res = a + b; break;
+        case '-': res = a - b; break;
+        case '*': res = a * b; break;
+        case '/':
+          if (b === 0) {
+            resultEl.textContent = 'Errore: divisione per 0';
+            resultEl.style.color = '#ef4444';
+            return;
+          }
+          res = a / b;
+          break;
         default:
-            return Error("Operazione non valida");
-    }
-}
+          return;
+      }
 
-function myLog(a, b, operation) {
-    this.val1 = a;
-    this.val2 = b;
-    this.operation = operation;
+      res = formatNumber(res);
+      resultEl.textContent = res;
+      resultEl.style.color = ''; // ripristina colore predefinito
 
-    this.fnLoad = function() {
-        console.log("LOAD: ", this.val1, this.val2);
-        
-        val1.value = this.val1;
-        val2.value = this.val2;
-    }
-}
+      const li = document.createElement('li');
+      li.textContent = `${a} ${op} ${b} = ${res}`;
+      memoryEl.prepend(li);
+    });
+  });
 
-function somma(a, b) {
-    return a + b;
-}
-
-function sottrazione(a, b) {
-    return a - b;
-}
-
-function moltiplicazione(a, b) {
-    return a * b;
-}
-
-function divisione(a, b) {
-    return a / b;
-}
+  // CLR: elimina i valori inseriti in input (e azzera il risultato visualizzato)
+  clrBtn.addEventListener('click', () => {
+    val1.value = '';
+    val2.value = '';
+    resultEl.textContent = '';
+    // Manteniamo lo storico; se vuoi svuotarlo anche qui, decommenta la riga sotto:
+    // memoryEl.innerHTML = '';
+    val1.focus();
+  });
+});

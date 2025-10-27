@@ -1,39 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>myCalculator</title>
-    
     <link rel="stylesheet" href="CSS/style.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <main class="calculator">
+        <h1>Calcolatrice</h1>
 
-    <input type="number" name="val1" id="val1">    
-    <input type="number" name="val2" id="val2">
+        <div class="inputs">
+            <label>
+                Primo valore
+                <input type="number" name="val1" id="val1" class="val" placeholder="Inserisci un numero">
+            </label>
+            <label>
+                Secondo valore
+                <input type="number" name="val2" id="val2" class="val" placeholder="Inserisci un numero">
+            </label>
+        </div>
 
-    <!-- button.op#$*4 -->
-    <br>
-    <br>    
+        <div class="buttons">
+            <button class="op" data-operation="+">+</button>
+            <button class="op" data-operation="-">−</button>
+            <button class="op" data-operation="*">×</button>
+            <button class="op" data-operation="/">÷</button>
+            <button class="op clr" id="clr" data-operation="CLR">CLR</button>
+        </div>
 
-    <button class="op" id="1" operation="+">+</button>
-    <button class="op" id="2" operation="-">-</button>
-    <button class="op" id="3" operation="*">x</button>
-    <button class="op" id="4" operation="/">/</button>
-    <button class="op" id="5" operation="CLR">CLR</button>
+        <section class="output">
+            <h2>RISULTATO</h2>
+            <p id="result" aria-live="polite"></p>
+        </section>
 
-
-    <br>
-    <br>
-
-    <h2>RISULATO: </h2> 
-    <p id="result"></p>
-
-    <ol id="memory"></ol>
+        <section class="memory-section">
+            <h3>Storico</h3>
+            <ol id="memory" class="memory"></ol>
+        </section>
+    </main>
 
     <script src="JS/Calc.js"></script>
-
 </body>
 </html>
